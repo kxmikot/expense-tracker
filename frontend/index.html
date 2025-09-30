@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    <form id="transactionForm">
+        <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select>
+        <input type="text" id="category" placeholder="Category" required>
+        <input type="number" id="amount" placeholder="Amount" step="0.01" required> <span id="amount">€</span>
+        <button type="submit">Add</button>
+    </form>
+    <h2>Transactions</h2>
+    <div id="summary">
+        <div class="summary-box income-box">
+            Income: <span id="totalIncome">0</span> €
+        </div>
+        <div class="summary-box balance-box">
+            Balance: <span id="balance">0</span> €
+        </div>
+        <div class="summary-box expense-box">
+            Expense: <span id="totalExpense">0</span> €
+        </div>
+    </div>
+    <ul id="transactionList"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
