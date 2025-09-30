@@ -14,21 +14,22 @@ A simple web application for tracking personal income and expenses. Built with *
 ---
 
 ## Project Structure
-
+```
 expense-tracker/
 │
-├── src/main/java/com/example/expense
-│ ├── controller/TransactionController.java
-│ ├── model/Transaction.java
-│ └── service/TransactionService.java
+├── expense-tracker-backend
+│ └──  src/main/java/com/example/expense
+│    ├── controller/TransactionController.java
+│    ├── model/Transaction.java
+│    └── service/TransactionService.java 
+│ └──  pom.xml # Maven dependencies
 │
-├── src/main/resources/static/
+├── frontend
 │ ├── index.html # Frontend interface
 │ └── style.css # Styles for list and summary
-│
-└── pom.xml # Maven dependencies
-
-
+│ └── script.js # Scripts
+└
+```
 ---
 
 ## Technologies Used
@@ -44,6 +45,7 @@ expense-tracker/
 ```bash
 git clone <repository-url>
 cd expense-tracker
+cd expense-tracker-backend
 ```
 2. **Run the backend**
 ```bash
