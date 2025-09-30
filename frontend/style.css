@@ -138,6 +138,7 @@ h2 {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .income-box {

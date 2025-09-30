@@ -1,11 +1,11 @@
-# Expense Tracker
+# Expense Tracker 💶
 
 **Project Overview**  
 A simple web application for tracking personal income and expenses. Built with **Java + Spring Boot** for the backend and **HTML/JavaScript** for the frontend. All data is stored in memory, making it lightweight and easy to run without a database.
 
 ---
 
-## Key Features
+## Key Features 🥇
 - **Add Transactions** – Record income or expense with category and amount.
 - **Real-Time Summary** – View total income, total expenses, and current balance instantly.
 - **In-Memory Storage** – All data persists only while the server is running.
@@ -13,7 +13,7 @@ A simple web application for tracking personal income and expenses. Built with *
 
 ---
 
-## Project Structure
+## Project Structure 📂
 ```
 expense-tracker/
 │
@@ -32,14 +32,14 @@ expense-tracker/
 ```
 ---
 
-## Technologies Used
+## Technologies Used ⚛️
 - **Backend:** Java 17, Spring Boot 3, REST API
 - **Frontend:** HTML, CSS, JavaScript
 - **Build Tool:** Maven
 
 ---
 
-## Getting Started
+## Getting Started 🏃‍♀️‍➡️
 
 1. **Clone the repository**  
 ```bash
@@ -51,3 +51,19 @@ cd expense-tracker-backend
 ```bash
 mvn spring-boot:run
 ```
+3. **Open the frontend**
+Open *src/main/resources/static/index.html* in a browser.
+4. **Access the API**
+Frontend communicates with backend at http://localhost:8080/api/transactions.
+
+---
+
+## Future Improvements 🕒
++ Add persistent storage (SQLite, H2, or PostgreSQL) ❌
++ Implement transaction deletion and editing ❌
++ Enhance UI with charts and filters for better visualization ❌
+
+---
+
+## Screenshot 👁‍🗨
+<img width="2850" height="1486" alt="Image" src="https://github.com/user-attachments/assets/53e80a47-4f93-471c-95d4-5c6f5c936681" />
