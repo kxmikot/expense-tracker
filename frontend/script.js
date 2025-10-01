@@ -27,7 +27,7 @@ form.addEventListener('submit', async (e) => {
 
 let transactions = [];
 
-function updateSummary() {
+function updateSummary() { 
     const income = transactions
         .filter(t => t.type === "income")
         .reduce((sum, t) => sum + t.amount, 0);
@@ -41,11 +41,11 @@ function updateSummary() {
     balanceEl.textContent = (income - expenses).toFixed(2);
 }
 
-async function loadTransactions() {
+async function loadTransactions() { 
     const res = await fetch('http://localhost:8080/api/transactions');
     const transactions = await res.json();
     list.innerHTML = '';
-    transactions.forEach(addTransactionToList);
+    transactions.forEach(t => addTransactionToList(t));
     updateSummary();
 }
 
@@ -54,24 +54,30 @@ function addTransactionToList (transaction) {
 
     const li = document.createElement('li');
     li.textContent = `${transaction.date} | ${transaction.category} | ${transaction.amount}€`;
-    li.classList.add(transaction.type);
+    
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '✖';
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.onclick = () => {
+        transactions = transactions.filter(t => t.id !== transaction.id);
+        removeTransaction(transaction.id); // Call the function to remove from backend
+        li.remove();
+        updateSummary();
+    };
 
+    li.classList.add(transaction.type);
+    li.appendChild(deleteBtn);
     list.appendChild(li);
+
 
     updateSummary();
 }
 
-// function removeTransaction (transaction) {
-//     if (transaction.type === 'income') {
-//         totalIncome -= transaction.amount;
-//     } else {
-//         totalExpense -= transaction.amount;  // In progress
-//     }
-
-//     const balance = totalIncomeEl - totalExpenseEl;
-//     balanceEl.textContent = balance.toFixed(2);
-//     totalIncomeEl.textContent = totalIncome.toFixed(2);
-//     totalExpenseEl.textContent = totalExpense.toFixed(2);
-// }
+async function removeTransaction (id) {
+    await fetch(`http://localhost:8080/api/transactions/${id}`, {
+        method: "DELETE"
+    });
+    updateSummary();
+}
 
 loadTransactions();
