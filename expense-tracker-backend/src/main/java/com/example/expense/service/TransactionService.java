@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.example.expense.model.Transaction;
 
 import java.util.List;
+import java.util.Iterator;
 
 @Service
 public class TransactionService {
@@ -18,4 +19,16 @@ public class TransactionService {
         transactions.add(transaction);
         return transaction;
     }
+
+    public boolean deleteTransaction(Long id) {
+        Iterator<Transaction> iterator = transactions.iterator();
+        while (iterator.hasNext()) {
+            Transaction transaction = iterator.next();
+            if (transaction.getId().equals(id)) {
+                iterator.remove();
+                return true;
+            } 
+        }
+        return false;
+    } 
 }

@@ -7,6 +7,8 @@ import com.example.expense.service.TransactionService;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 @RestController
 @RequestMapping("/api/transactions")
 @CrossOrigin(origins = "*")
@@ -25,5 +27,15 @@ public class TransactionController {
     @PostMapping
     public Transaction addTransaction(@RequestBody Transaction transaction) {
         return transactionService.addTransaction(transaction);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTransaction(@PathVariable Long id) {
+        boolean removed = transactionService.deleteTransaction(id);
+        if (removed) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

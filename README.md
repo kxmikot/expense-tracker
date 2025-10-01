@@ -52,7 +52,7 @@ cd expense-tracker-backend
 mvn spring-boot:run
 ```
 3. **Open the frontend**
-Open *src/main/resources/static/index.html* in a browser.
+Open *frontend/index.html* in a browser.
 4. **Access the API**
 Frontend communicates with backend at http://localhost:8080/api/transactions.
 
