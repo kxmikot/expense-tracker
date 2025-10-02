@@ -66,4 +66,4 @@ Frontend communicates with backend at http://localhost:8080/api/transactions.
 ---
 
 ## Screenshot 👁‍🗨
-<img width="2850" height="1486" alt="Image" src="https://github.com/user-attachments/assets/53e80a47-4f93-471c-95d4-5c6f5c936681" />
+<img width="2813" height="1454" alt="Image" src="https://github.com/user-attachments/assets/3d0a8138-4964-4e13-9bcf-dae13ada71c0" />

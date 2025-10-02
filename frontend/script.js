@@ -196,7 +196,7 @@ function showAlert (message) { // Custom alert function
     })
 }
 
-function showPrompt(message, defaultValue = '') { // Custom prompt function
+function showPrompt(message) { // Custom prompt function
     return new Promise ((resolve) => {
         const modal = document.getElementById('customPrompt');
         const promptMessage = document.getElementById('promptMessage');
@@ -205,7 +205,7 @@ function showPrompt(message, defaultValue = '') { // Custom prompt function
         const cancelBtn = document.getElementById('promptCancel');
 
         promptMessage.textContent = message;
-        promptInput.value = defaultValue;
+        promptInput.value = '';
         modal.style.display = 'flex';
 
         submitBtn.onclick = () => {
