@@ -38,4 +38,14 @@ public class TransactionController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Transaction> editTransaction(@PathVariable Long id, @RequestBody Transaction transaction) {
+        Transaction updatedTransaction = transactionService.editTransaction(id, transaction);
+        if (updatedTransaction != null) {
+            return ResponseEntity.ok(updatedTransaction);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

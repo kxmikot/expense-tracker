@@ -31,4 +31,16 @@ public class TransactionService {
         }
         return false;
     } 
+
+    public Transaction editTransaction (Long id, Transaction updTransaction) {
+        for (Transaction transaction : transactions) {
+            if (transaction.getId().equals(id)) {
+                transaction.setType(updTransaction.getType());
+                transaction.setAmount(updTransaction.getAmount());
+                transaction.setCategory(updTransaction.getCategory());
+                return transaction;
+            }
+        }
+        return null;
+    }
 }
