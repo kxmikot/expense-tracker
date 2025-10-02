@@ -60,7 +60,7 @@ Frontend communicates with backend at http://localhost:8080/api/transactions.
 
 ## Future Improvements 🕒
 + Add persistent storage (SQLite, H2, or PostgreSQL) ❌
-+ Implement transaction deletion and editing ❌ (Delete feature ✅)
++ Implement transaction deletion and editing ✅
 + Enhance UI with charts and filters for better visualization ❌
 
 ---
