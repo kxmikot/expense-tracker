@@ -72,10 +72,10 @@ function addTransactionToList (transaction) {
     editBtn.textContent = '✎';
     editBtn.classList.add('edit-btn');
 
-    editBtn.onclick = () => {
-        const newCategory = prompt("Enter new category:", transaction.category);
-        const newAmount = parseFloat(prompt("Enter new amount:", transaction.amount));
-        const newType = prompt("Enter new type (income/expense):", transaction.type);
+    editBtn.onclick = async () => {
+        const newCategory = await showPrompt("Enter new category:", transaction.category);
+        const newAmount = parseFloat(await showPrompt("Enter new amount:", transaction.amount));
+        const newType = await showPrompt("Enter new type (income/expense):", transaction.type);
 
         if (newCategory && !isNaN(newAmount) && (newType === 'income' || newType === 'expense')) {
             const updatedTransaction = { // Create updated transaction object
@@ -89,9 +89,10 @@ function addTransactionToList (transaction) {
                 t.id === transaction.id ? updatedTransaction : t
             );
             
-            editTransaction(transaction.id, updatedTransaction);
+            await editTransaction(transaction.id, updatedTransaction);
             
             li.textContent = `${updatedTransaction.date} | ${updatedTransaction.category} | ${updatedTransaction.amount}€`;
+            
             li.className = '';
             li.classList.add(updatedTransaction.type);
 
@@ -99,7 +100,7 @@ function addTransactionToList (transaction) {
             li.appendChild(editBtn);
             updateSummary();
         } else {
-            alert("Invalid input. Please try again.");
+            showAlert("Invalid input. Please try again.");
         }
 
     }
@@ -193,6 +194,31 @@ function showAlert (message) { // Custom alert function
             resolve();
         }
     })
+}
+
+function showPrompt(message, defaultValue = '') { // Custom prompt function
+    return new Promise ((resolve) => {
+        const modal = document.getElementById('customPrompt');
+        const promptMessage = document.getElementById('promptMessage');
+        const promptInput = document.getElementById('promptInput');
+        const submitBtn = document.getElementById('promptSubmit');
+        const cancelBtn = document.getElementById('promptCancel');
+
+        promptMessage.textContent = message;
+        promptInput.value = defaultValue;
+        modal.style.display = 'flex';
+
+        submitBtn.onclick = () => {
+            const value = promptInput.value.trim();
+            modal.style.display = 'none';
+            resolve(value);
+        }
+
+        cancelBtn.onclick = () => {
+            modal.style.display = 'none';
+            resolve(null);
+        }
+    });
 }
 
 loadTransactions();

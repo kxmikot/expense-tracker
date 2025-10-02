@@ -187,7 +187,7 @@ h2 {
     border-radius: 4px;
     cursor: pointer;
     font-size: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
 #clearAllBtn:hover {
@@ -213,9 +213,22 @@ h2 {
 }
 
 .modal-content button {
+  background-color: #e2e8f0;
   margin: 10px;
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #f0f0f0;
+}
+
+#promptInput {
+    width: 80%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
