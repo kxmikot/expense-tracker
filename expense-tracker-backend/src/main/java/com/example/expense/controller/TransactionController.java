@@ -48,4 +48,14 @@ public class TransactionController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> clearAllTransactions () {
+        boolean cleared = transactionService.clearAllTransactions();
+        if (cleared) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.status(500).build();
+        }
+    }
 }

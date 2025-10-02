@@ -134,4 +134,65 @@ async function editTransaction (id, updatedTransaction) {
     }
 }
 
+const clearAllBtn = document.getElementById('clearAllBtn'); // Get the "Clear All" button
+
+clearAllBtn.addEventListener('click', async () => {
+    if (transactions.length !== 0) {
+        const confirmed = await showCustomConfirm("Are you sure you want to clear all transactions?");
+        if (confirmed) {
+            clearAllTransactions();
+        } 
+    } else {
+        await showAlert("No transactions to clear.");
+    }
+});
+
+async function clearAllTransactions() {
+    await fetch('http://localhost:8080/api/transactions', {
+        method: 'DELETE'
+    });
+
+    transactions = [];
+    list.innerHTML = '';
+    updateSummary();
+}
+
+function showCustomConfirm(message) { // Custom confirm function
+    return new Promise ((resolve) => {
+        const modal = document.getElementById('customConfirm');
+        const confirmMessage = document.getElementById('confirmMessage');
+        const yesBtn = document.getElementById('confirmYes');
+        const noBtn = document.getElementById('confirmNo');
+
+        confirmMessage.textContent = message;
+        modal.style.display = 'flex';
+
+        yesBtn.onclick = () => {
+            modal.style.display = 'none';
+            resolve(true);
+        }
+
+        noBtn.onclick = () => {
+            modal.style.display ='none';
+            resolve(false);
+        }
+    });
+}
+
+function showAlert (message) { // Custom alert function
+    return new Promise ((resolve) => {
+        const modal = document.getElementById('customAlert');
+        const alertMessage = document.getElementById('alertMessage');
+        const okBtn = document.getElementById('alertOk');
+
+        alertMessage.textContent = message;
+        modal.style.display = 'flex';
+
+        okBtn.onclick = () => {
+            modal.style.display = 'none';
+            resolve();
+        }
+    })
+}
+
 loadTransactions();

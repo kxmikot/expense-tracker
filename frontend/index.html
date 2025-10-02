@@ -28,6 +28,23 @@
             Expense: <span id="totalExpense">0</span> €
         </div>
     </div>
+    <!-- Custom confirm -->
+    <button id="clearAllBtn">Clear All Transactions</button>
+    <div id="customConfirm" class="modal">
+        <div class="modal-content">
+            <p id="confirmMessage"></p>
+            <button id="confirmYes">Yes</button>
+            <button id="confirmNo">No</button>
+        </div>
+    </div>
+    <!-- Custom alert-->
+    <div id="customAlert" class="modal">
+        <div class="modal-content">
+            <p id="alertMessage"></p>
+            <button id="alertOk">Ок</button>
+        </div>
+    </div>
+    
     <ul id="transactionList"></ul>
 
     <script src="script.js"></script>

@@ -43,4 +43,9 @@ public class TransactionService {
         }
         return null;
     }
+
+    public boolean clearAllTransactions() {
+        transactions.clear();
+        return true;
+    }
 }
