@@ -1,51 +1,42 @@
 package com.example.expense.service;
 
+import com.example.expense.repository.TransactionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.expense.model.Transaction;
 
 import java.util.List;
-import java.util.Iterator;
 
 @Service
 public class TransactionService {
-    private final List<Transaction> transactions = new java.util.ArrayList<>();
+
+    @Autowired
+    private TransactionRepository repository;
 
     public List<Transaction> getAllTransactions() {
-        return transactions;
+        return repository.findAll();
     }
 
     public Transaction addTransaction(Transaction transaction) {
-        transactions.add(transaction);
-        return transaction;
+        return repository.save(transaction);
     }
 
-    public boolean deleteTransaction(Long id) {
-        Iterator<Transaction> iterator = transactions.iterator();
-        while (iterator.hasNext()) {
-            Transaction transaction = iterator.next();
-            if (transaction.getId().equals(id)) {
-                iterator.remove();
-                return true;
-            } 
-        }
-        return false;
+    public void deleteTransaction(Long id) {
+        repository.deleteById(id);
     } 
 
     public Transaction editTransaction (Long id, Transaction updTransaction) {
-        for (Transaction transaction : transactions) {
-            if (transaction.getId().equals(id)) {
-                transaction.setType(updTransaction.getType());
-                transaction.setAmount(updTransaction.getAmount());
-                transaction.setCategory(updTransaction.getCategory());
-                return transaction;
-            }
-        }
-        return null;
+        return repository.findById(id).map(t -> {
+            t.setCategory(updTransaction.getCategory());
+            t.setType(updTransaction.getType());
+            t.setAmount(updTransaction.getAmount());
+            t.setDate(updTransaction.getDate());
+            return repository.save(t);
+        }).orElse(null);
     }
 
-    public boolean clearAllTransactions() {
-        transactions.clear();
-        return true;
+    public void clearAllTransactions() {
+        repository.deleteAll();
     }
 }

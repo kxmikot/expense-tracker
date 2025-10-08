@@ -1,5 +1,6 @@
 package com.example.expense.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.expense.model.Transaction;
@@ -7,15 +8,15 @@ import com.example.expense.service.TransactionService;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-
 @RestController
 @RequestMapping("/api/transactions")
 @CrossOrigin(origins = "*")
 public class TransactionController {
+
+    @Autowired
     private final TransactionService transactionService;
 
-    public TransactionController(TransactionService transactionService) {
+    TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
     }
 
@@ -30,32 +31,17 @@ public class TransactionController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTransaction(@PathVariable Long id) {
-        boolean removed = transactionService.deleteTransaction(id);
-        if (removed) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public void deleteTransaction(@PathVariable Long id) {
+        transactionService.deleteTransaction(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Transaction> editTransaction(@PathVariable Long id, @RequestBody Transaction transaction) {
-        Transaction updatedTransaction = transactionService.editTransaction(id, transaction);
-        if (updatedTransaction != null) {
-            return ResponseEntity.ok(updatedTransaction);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public Transaction editTransaction(@PathVariable Long id, @RequestBody Transaction transaction) {
+        return transactionService.editTransaction(id, transaction);
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> clearAllTransactions () {
-        boolean cleared = transactionService.clearAllTransactions();
-        if (cleared) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.status(500).build();
-        }
+    public void clearAllTransactions () {
+        transactionService.clearAllTransactions();
     }
 }
