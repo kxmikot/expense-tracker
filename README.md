@@ -8,7 +8,7 @@ A simple web application for tracking personal income and expenses. Built with *
 ## Key Features 🥇
 - **Add Transactions** – Record income or expense with category and amount.
 - **Real-Time Summary** – View total income, total expenses, and current balance instantly.
-- **In-Memory Storage** – All data persists only while the server is running.
+- **In-File Storage** – All data persists in db file.
 - **Minimalist UI** – Clean and strict design for better readability.
 
 ---
@@ -21,19 +21,20 @@ expense-tracker/
 │ └──  src/main/java/com/example/expense
 │    ├── controller/TransactionController.java
 │    ├── model/Transaction.java
+│    ├── repository/TransactionRepository.java   
 │    └── service/TransactionService.java 
 │ └──  pom.xml # Maven dependencies
 │
 ├── frontend
 │ ├── index.html # Frontend interface
-│ └── style.css # Styles for list and summary
+│ ├── style.css # Styles for list and summary
 │ └── script.js # Scripts
 └
 ```
 ---
 
 ## Technologies Used ⚛️
-- **Backend:** Java 17, Spring Boot 3, REST API
+- **Backend:** Java 17, Spring Boot 3, REST API, H2
 - **Frontend:** HTML, CSS, JavaScript
 - **Build Tool:** Maven
 
@@ -59,7 +60,7 @@ Frontend communicates with backend at http://localhost:8080/api/transactions.
 ---
 
 ## Future Improvements 🕒
-+ Add persistent storage (SQLite, H2, or PostgreSQL) ❌
++ Add persistent storage (SQLite, H2, or PostgreSQL) ✅
 + Implement transaction deletion and editing ✅
 + Enhance UI with charts and filters for better visualization ❌
 
